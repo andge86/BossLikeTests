@@ -1,6 +1,4 @@
 os: osx
-services:
-  - xvfb
 language: java
 addons:
   chrome: stable

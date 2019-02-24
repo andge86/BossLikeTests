@@ -17,7 +17,7 @@ public class FullPathBosslikeTest extends BaseTest {
     }
 
 
-    @DataProvider(name = "credentialsData", parallel = true)
+    @DataProvider(name = "credentialsData", parallel = false)
     public Object[][] credentialsOfUsers() {
 
         String[] instagramLogins = System.getenv("INSTAGRAM_LOGINS").split(",");

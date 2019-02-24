@@ -11,8 +11,8 @@ import java.util.List;
 
 public class BossLikePage extends BasePage {
 
-    private WebDriver driver;
-    private WebDriverWait wait;
+    WebDriver driver;
+    WebDriverWait wait;
 
 
     @FindBy(id = "User_loginLogin")

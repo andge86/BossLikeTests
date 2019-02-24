@@ -1,8 +1,10 @@
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import utils.BaseFlow;
 
-public class FullPathBosslikeTest extends BaseTest {
+public class FullPathBosslikeTest {
 
 
     private final static int QUANTITY_OF_PAGES = 2;
@@ -11,9 +13,17 @@ public class FullPathBosslikeTest extends BaseTest {
     @Test(dataProvider = "credentialsData", threadPoolSize = 4)
     public void followOnInstagramTest(String instagramLogin, String instagramPassword, String bosslikeLogin, String bosslikePassword) {
 
-        BaseFlow baseFlow = new BaseFlow(driver, wait, QUANTITY_OF_PAGES);
-        baseFlow.makeRequiredClicks(bosslikeLogin, bosslikePassword, instagramLogin, instagramPassword);
-
+        Initializator initializator = new Initializator();
+        WebDriver driver = initializator.initDriver();
+        WebDriverWait wait = initializator.initWait(driver);
+        try {
+            BaseFlow baseFlow = new BaseFlow(driver, wait, QUANTITY_OF_PAGES);
+            baseFlow.makeRequiredClicks(bosslikeLogin, bosslikePassword, instagramLogin, instagramPassword);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            initializator.driverShutdown(driver);
+        }
     }
 
 

@@ -2,10 +2,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.*;
 
 import java.util.concurrent.TimeUnit;
 
@@ -16,7 +13,7 @@ public class BaseTest {
     WebDriverWait wait;
 
 
-    @BeforeTest
+    @BeforeMethod
     public void initBrowser() {
 
         System.out.println("Initializing WedDriver");
@@ -34,7 +31,7 @@ public class BaseTest {
         wait = new WebDriverWait(driver, 10);
     }
 
-    @AfterTest
+    @AfterMethod
     public void driverShutdown() {
         if (driver != null) {
             driver.close();

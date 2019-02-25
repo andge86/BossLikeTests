@@ -35,7 +35,6 @@ public class FullPathBosslikeTest {
         String[] bosslikeLogins = System.getenv("BOSSLIKE_LOGINS").split(",");
         String[] bosslikePasswords = System.getenv("BOSSLIKE_PASSWORDS").split(",");
 
-
         return new Object[][]{
                 {instagramLogins[0], instagramPasswords[0], bosslikeLogins[0], bosslikePasswords[0]},
                 {instagramLogins[1], instagramPasswords[1], bosslikeLogins[1], bosslikePasswords[1]},

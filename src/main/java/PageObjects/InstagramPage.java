@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static java.lang.Thread.currentThread;
+
 public class InstagramPage extends BasePage {
 
     WebDriver driver;
@@ -42,14 +44,14 @@ public class InstagramPage extends BasePage {
     public BossLikePage LogInToInstagram(String login, String password) throws InterruptedException {
 
         driver.get("https://www.instagram.com/" + login + "/");
-        System.out.println("Logging in to instagram as " + login);
+        System.out.println(currentThread().getName() + ": Logging in to instagram as " + login);
 
         waitAndClick(logInButtonToOpenLogInForm);
         waitAndSendText(usernameTextField, login);
         waitAndSendText(passwordTextField, password);
         waitAndClick(logInButton);
         Thread.sleep(2500);
-        System.out.println("Logged in to instagram as " + login);
+        System.out.println(currentThread().getName() + ": Logged in to instagram as " + login);
         driver.close();
 
         for (String winHandle : driver.getWindowHandles()) {
@@ -63,11 +65,11 @@ public class InstagramPage extends BasePage {
 
     public InstagramPage reFollowingLogic() throws InterruptedException {
 
-        System.out.println("Seems already following");
+        System.out.println(currentThread().getName() + ": Seems already following, applying re-follow logic");
         waitAndClick(followingLink);
         waitAndClick(unfollowLink);
         waitAndClick(followLink);
-        System.out.println("Re-followed");
+        System.out.println(currentThread().getName() + ": Re-followed");
 
         return this;
     }
@@ -75,8 +77,7 @@ public class InstagramPage extends BasePage {
     public InstagramPage followLinkClick() throws InterruptedException {
 
         waitAndClick(followLink);
-        System.out.println("Followed");
+        System.out.println(currentThread().getName() + ": Followed");
         return this;
     }
-
 }

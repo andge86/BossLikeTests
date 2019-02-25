@@ -34,5 +34,4 @@ class BasePage {
         wait.until(ExpectedConditions.visibilityOf(webElement));
         System.out.println(webElement.getText());
     }
-
 }

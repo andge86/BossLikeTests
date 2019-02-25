@@ -12,7 +12,7 @@ public class Initializator {
 
         WebDriver driver;
 
-        System.out.println("Initializing WedDriver");
+        System.out.println(Thread.currentThread().getName() + ": Initializing WedDriver");
         System.setProperty("webdriver.chrome.driver", "chromedriver");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--lang=en-US");

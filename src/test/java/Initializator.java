@@ -2,7 +2,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.*;
 
 import java.util.concurrent.TimeUnit;
 
@@ -18,8 +17,8 @@ public class Initializator {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--lang=en-US");
         options.addArguments("disable-geolocation");
-        //   options.addArguments("headless");
-        //   options.addArguments("window-size=1200x600");
+        options.addArguments("headless");
+        options.addArguments("window-size=1200x600");
 
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
@@ -29,9 +28,6 @@ public class Initializator {
     }
 
     public WebDriverWait initWait(WebDriver driver) {
-
-        WebDriverWait wait;
-
         return new WebDriverWait(driver, 10);
     }
 
@@ -40,7 +36,7 @@ public class Initializator {
         if (driver != null) {
             driver.close();
             driver.quit();
-            System.out.println("Closed WebDriver");
+            System.out.println(Thread.currentThread().getName() + ": Closed WebDriver");
         }
     }
 }

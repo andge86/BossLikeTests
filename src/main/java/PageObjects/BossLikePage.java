@@ -9,6 +9,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
+import static java.lang.Thread.currentThread;
+
 public class BossLikePage extends BasePage {
 
     WebDriver driver;
@@ -57,12 +59,12 @@ public class BossLikePage extends BasePage {
     public BossLikePage LogInToBossLike(String username, String password) throws InterruptedException {
 
         driver.get("https://bosslike.ru/login/");
-        System.out.println("Logging in to bosslike as " + username);
+        System.out.println(currentThread().getName() + ": Logging in to bosslike as " + username);
         waitAndSendText(usernameTextField, username);
         waitAndSendText(passwordTextField, password);
         waitAndClick(logInButton);
         Thread.sleep(2000);
-        System.out.println("Logged in to bosslike as " + username);
+        System.out.println(currentThread().getName() + ": Logged in to bosslike as " + username);
 
         return this;
     }
@@ -74,7 +76,7 @@ public class BossLikePage extends BasePage {
         waitAndClick(goToInstagramLink);
         Thread.sleep(2000);
 
-        System.out.println("Went to instagram page");
+        System.out.println(currentThread().getName() + ": Went to instagram page");
 
         for (String winHandle : driver.getWindowHandles()) {
             driver.switchTo().window(winHandle);
@@ -92,7 +94,7 @@ public class BossLikePage extends BasePage {
         waitAndClick(instagramTasksLink);
         waitAndClick(instagramTaskFollowLink);
 
-        System.out.println("Went to instagram following tasks");
+        System.out.println(currentThread().getName() + ": Went to instagram following tasks");
 
         return this;
     }
@@ -101,7 +103,7 @@ public class BossLikePage extends BasePage {
 
         waitAndGetText(moreTasksLink);
         waitAndClick(moreTasksLink);
-        Thread.sleep(4000);
+        Thread.sleep(3000);
 
         return this;
     }
@@ -117,7 +119,7 @@ public class BossLikePage extends BasePage {
         for (int i = 1; i <= quantityOfFpllowTasks(); i++) {
 
             String xpath = "//article[" + i + "]//div[@class = 'media-right media-middle task-btn']/*";
-            System.out.println("Go: " + xpath);
+            System.out.println(currentThread().getName() + ": Go: " + xpath);
 
             WebElement elem;
 
@@ -128,7 +130,7 @@ public class BossLikePage extends BasePage {
                 elem.click();
 
             } catch (Exception exep) {
-                System.out.println("Not find element to click");
+                System.out.println(currentThread().getName() + ": Not found element to click");
                 elem = driver.findElement(By.xpath(xpath));
                 System.out.println(elem.getText());
                 continue;
@@ -143,7 +145,7 @@ public class BossLikePage extends BasePage {
 
             if (driver.getWindowHandles().size() == 2) {
                 InstagramPage instagramPage = new InstagramPage(driver, wait);
-                Thread.sleep(1000);
+                Thread.sleep(1500);
                 try {
                     instagramPage.followLinkClick();
                 } catch (Exception e) {
@@ -160,12 +162,12 @@ public class BossLikePage extends BasePage {
 
                 try {
                     Thread.sleep(1000);
-                    System.out.println("Seems task was cancelled");
+                    System.out.println(currentThread().getName() + ": Seems task was cancelled");
                     elem = driver.findElement(By.xpath(xpath));
                     System.out.println(elem.getText());
 
                 } catch (Exception exe) {
-                    System.out.println("No description found, some unpredictable issue");
+                    System.out.println(currentThread().getName() + ": No description found, some unpredictable issue");
                 }
             }
         }

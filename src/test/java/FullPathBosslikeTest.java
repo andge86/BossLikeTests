@@ -7,7 +7,7 @@ import utils.BaseFlow;
 public class FullPathBosslikeTest {
 
 
-    private final static int QUANTITY_OF_PAGES = 2;
+    private final static int QUANTITY_OF_PAGES = 3;
 
 
     @Test(dataProvider = "credentialsData", threadPoolSize = 4)

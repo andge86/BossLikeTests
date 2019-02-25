@@ -32,6 +32,6 @@ class BasePage {
     void waitAndGetText(WebElement webElement) throws InterruptedException {
         Thread.sleep(600);
         wait.until(ExpectedConditions.visibilityOf(webElement));
-        System.out.println(webElement.getText());
+        System.out.println(Thread.currentThread().getName() + ": " + webElement.getText());
     }
 }

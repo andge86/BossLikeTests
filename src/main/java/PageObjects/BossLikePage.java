@@ -124,15 +124,17 @@ public class BossLikePage extends BasePage {
             WebElement elem;
 
             try {
+                System.out.println(currentThread().getName() + ": Defining task to perform");
                 Thread.sleep(1000);
                 elem = driver.findElement(By.xpath(xpath));
-                System.out.println(elem.getText());
-                elem.click();
+                waitAndGetText(elem);
+                waitAndGetText(elem);
+                waitAndClick(elem);
 
             } catch (Exception exep) {
-                System.out.println(currentThread().getName() + ": Not found element to click");
+                System.out.println(currentThread().getName() + ": Seems task was not defined");
                 elem = driver.findElement(By.xpath(xpath));
-                System.out.println(elem.getText());
+                waitAndGetText(elem);
                 continue;
             }
             Thread.sleep(2500);
@@ -155,16 +157,17 @@ public class BossLikePage extends BasePage {
                 Thread.sleep(1000);
                 driver.close();
                 driver.switchTo().window(winHandleBefore);
-                Thread.sleep(1000);
+                Thread.sleep(3000);
                 elem = driver.findElement(By.xpath(xpath));
-                System.out.println(elem.getText());
+                waitAndGetText(elem);
+                System.out.println(currentThread().getName() + ": Completed defined task");
             } else {
 
                 try {
                     Thread.sleep(1000);
                     System.out.println(currentThread().getName() + ": Seems task was cancelled");
                     elem = driver.findElement(By.xpath(xpath));
-                    System.out.println(elem.getText());
+                    waitAndGetText(elem);
 
                 } catch (Exception exe) {
                     System.out.println(currentThread().getName() + ": No description found, some unpredictable issue");
